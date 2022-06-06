@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h> 
 #define MAX 30
+
 struct list{
   int area2;//1.전주 2.서울 3.부산 4.울산 5.대전 6.수원
   int area1;//1.전주 2.서울 3.부산 4.울산 5.대전 6.수원
@@ -28,7 +29,7 @@ void printarea(int a);
 void printarea2(int a);
 void printtrans(int a);
 int choosedest(struct list* l[],int list_count,int* start, struct plan* p[],int pcount);
-void printresult(int start,struct plan* p[],int pcount, struct spe* s[]);
+void printresult(int start,struct plan* p[],int pcount, struct spe* s[],int cost);
 
 int main(void) {
   int count=0;
@@ -38,14 +39,21 @@ int main(void) {
   struct list* list[50];
   struct plan* myplan[10];
   int c=1;
+  int cost=99999;
+  int check=0;
   
   int listcount=loadlist(list);
   struct spe* spe[listcount];
   loadspe(spe, listcount);
   
-  while (1)
+  while (cost>0&&count<10)
   {
     if(count==0){
+      while(check==0){
+      printf("Transportation budget? ");
+      scanf("%d",&cost);
+        if(cost>0)check=1;
+        }
       printf("출발지점을 선택해 주세요\n1.전주 2.서울 3.부산 4.울산 5.대전 6.수원\n출발지점 번호: ");
       scanf("%d",&start);
       printf("\n");
@@ -54,13 +62,19 @@ int main(void) {
     else{
       dest=choosedest(list,listcount,&dest, myplan,count);
     }
+    cost-=myplan[count]->price;
     count++;
-    printf("계획짜기를 끝내시고 싶으시다면 0을 아니라면 다른 숫자를 입력해주세요 ");
+    if(cost<0){
+      printf("예산을 초과하셧습니다\n");
+      count--;
+      cost+=myplan[count]->price;
+    }
+    printf("남은 교통비는 %d원입니다.\n계획짜기를 끝내시고 싶으시다면 0을 아니라면 다른 숫자를 입력해주세요 ",cost);
   scanf("%d",&c);
     if(c==0)break;
     printf("\n");
   }
-    printresult(start,myplan,count,spe);
+    printresult(start,myplan,count,spe,cost);
   return 0;
 }
 
@@ -189,8 +203,8 @@ int choosedest(struct list* l[],int list_count,int* start, struct plan* p[],int 
   return dest;
 }
 
-void printresult(int start,struct plan* p[],int pcount, struct spe* s[]){
-  printf("여행 이동계획 총요약\n");
+void printresult(int start,struct plan* p[],int pcount, struct spe* s[],int cost){
+  printf("\n여행 이동계획 총요약\n");
   printf("출발 지점: ");
   printarea2(start);
   printf("\n");
@@ -206,7 +220,8 @@ void printresult(int start,struct plan* p[],int pcount, struct spe* s[]){
     price+=p[i]->price;
     min+=p[i]->minute;
   }
-  printf("\n총 이동경비: %d원\n총 이동시간: %d분\n",price,min);
+  printf("교통예산: %d",price+cost);
+  printf("\n총 교통비: %d원\n총 이동시간: %d분\n남은 교통비: %d원",price,min,cost);
 
   FILE*file=fopen("travel.txt","w");
   fprintf(file,"여행 이동계획 총요약\n출발 지점: ");
@@ -229,6 +244,7 @@ void printresult(int start,struct plan* p[],int pcount, struct spe* s[]){
     else if(a==6)fprintf(file,"수원 ");
     fprintf(file,"\n관광명소: %s %s %s\n\n",s[p[i]->dest-1]->spe[0],s[p[i]->dest-1]->spe[1],s[p[i]->dest-1]->spe[2]);
   }
-  fprintf(file,"총 이동경비: %d원\n총 이동시간: %d분",price,min);
+  fprintf(file,"교통예산: %d",price+cost);
+  fprintf(file,"\n총 교통비: %d원\n총 이동시간: %d분\n남은 교통비: %d원",price,min,cost);
   fclose(file);
 }
