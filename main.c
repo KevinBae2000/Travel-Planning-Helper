@@ -2,12 +2,6 @@
 #include <string.h>
 #include <stdlib.h> 
 #define MAX 30
-#define 전주 1
-#define 서울 2
-#define 부산 3
-#define 울산 4
-#define 대전 5
-#define 수원 6
 struct list{
   int area2;//1.전주 2.서울 3.부산 4.울산 5.대전 6.수원
   int area1;//1.전주 2.서울 3.부산 4.울산 5.대전 6.수원
