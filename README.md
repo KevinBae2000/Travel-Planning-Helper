@@ -22,3 +22,15 @@ There are 5 files(main.c, main.o, list.txt, place.txt, travel.txt) in total.
 > 
 > travel.txt: Text files for result
 
+1. run main.o file
+ex) $ ./main.o
+
+2.Type Budget and select starting point
+
+✔ A class with more than two sections is asked to enter the section. ✔
+ex) Section : 2
+At the end of the input, if "break" is entered, the program will end.
+ex) Class : break
+You can see the number of classes and credits you applied for.
+Within the same folder, a CSV-type timetable is created with the file name specified above.
+ex) $ cat my_schedule.csv
