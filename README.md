@@ -22,15 +22,27 @@ There are 5 files(main.c, main.o, list.txt, place.txt, travel.txt) in total.
 > 
 > travel.txt: Text files for result
 
-1. run main.o file
+1. Run main.o file.
 ex) $ ./main.o
 
-2.Type Budget and select starting point
+2. Type Budget and select starting point.
 
-✔ A class with more than two sections is asked to enter the section. ✔
-ex) Section : 2
-At the end of the input, if "break" is entered, the program will end.
-ex) Class : break
-You can see the number of classes and credits you applied for.
-Within the same folder, a CSV-type timetable is created with the file name specified above.
-ex) $ cat my_schedule.csv
+![image](https://user-images.githubusercontent.com/103616973/172415349-1d6893a4-264e-4545-b1e1-cf1a699233bd.png)
+
+
+3. Select place to travel and trasportation to use.
+
+![image](https://user-images.githubusercontent.com/103616973/172416038-03d6da83-b2ce-483b-b67c-92d4d9b27190.png)
+
+4. Choose whether or not you plan to go to the next area for trip.
+
+![image](https://user-images.githubusercontent.com/103616973/172417122-76e6ea37-9abb-422b-a83f-6e6ba49c49a2.png)
+
+![image](https://user-images.githubusercontent.com/103616973/172417306-891fe5fb-d3e8-43c3-aa0b-7b935e604c0e.png)
+
+5. Show result and make text file when you finished.
+
+![image](https://user-images.githubusercontent.com/103616973/172417623-12cda5c2-dc21-4f89-ab4c-f69f19b481d8.png)
+
+![image](https://user-images.githubusercontent.com/103616973/172417755-74835d73-2f27-424a-a41c-1c92fc69613d.png)
+
