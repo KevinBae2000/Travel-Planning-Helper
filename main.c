@@ -4,22 +4,22 @@
 #define MAX 30
 
 struct list{
-  int area2;//1.전주 2.서울 3.부산 4.울산 5.대전 6.수원
-  int area1;//1.전주 2.서울 3.부산 4.울산 5.대전 6.수원
-	int tran; //1.기차 2.버스 3.비행기
+  int area2;//1. Jeonju 2. Seoul 3. Busan 4. Ulsan 5. Daejeon 6. Suwon
+  int area1;//1. Jeonju 2. Seoul 3. Busan 4. Ulsan 5. Daejeon 6. Suwon
+	int tran; //1. Train 2. Bus 3. Airplane
 	char sp[30];
   int price;
   int minute;
 };
 struct plan{
-  int dest;//1.전주 2.서울 3.부산 4.울산 5.대전 6.수원
-	int tran; //1.기차 2.버스 3.비행기
+  int dest;//1. Jeonju 2. Seoul 3. Busan 4. Ulsan 5. Daejeon 6. Suwon
+	int tran; //1. Train 2. Bus 3. Airplane
 	char sp[30];
   int price;
   int minute;
 };
 struct spe{
-  int area;//1.전주 2.서울 3.부산 4.울산 5.대전 6.수원
+  int area;//1. Jeonju 2. Seoul 3. Busan 4. Ulsan 5. Daejeon 6. Suwon
   char spe[3][30];
 };
 
@@ -36,7 +36,7 @@ int main(void) {
   int count=0;
   int start;
   int dest;
-  int choose;//선택
+  int choose;//select
   struct list* list[50];
   struct plan* myplan[10];
   int c=1;
@@ -51,11 +51,11 @@ int main(void) {
   {
     if(count==0){
       while(check==0){
-      printf("Transportation budget? ");
+      printf("Traffic budget? ");
       scanf("%d",&cost);
         if(cost>0)check=1;
         }
-      printf("출발지점을 선택해 주세요\n1.전주 2.서울 3.부산 4.울산 5.대전 6.수원\n출발지점 번호: ");
+      printf("Please select the departure point\n1. Jeonju 2. Seoul 3. Busan 4. Ulsan 5. Daejeon 6. Suwon\nDeparture point number: ");
       scanf("%d",&start);
       printf("\n");
     dest=choosedest(list,listcount,&start, myplan,count);
@@ -66,11 +66,11 @@ int main(void) {
     cost-=myplan[count]->price;
     count++;
     if(cost<0){
-      printf("예산을 초과하셧습니다\n");
+      printf("Exceeded the budget\n");
       count--;
       cost+=myplan[count]->price;
     }
-    printf("남은 교통비는 %d원입니다.\n계획짜기를 끝내시고 싶으시다면 0을 아니라면 다른 숫자를 입력해주세요 ",cost);
+    printf("The remaining transportation budget is %d won.\nIf you want to finish the plan, please enter 0 if it is not another number. ",cost);
   scanf("%d",&c);
     if(c==0)break;
     printf("\n");
@@ -106,30 +106,30 @@ void loadspe(struct spe* s[],int count){
 }
 
 void printarea(int a){
-  if(a==1)printf("1.전주 ");
-  else if(a==2)printf("2.서울 ");
-  else if(a==3)printf("3.부산 ");
-  else if(a==4)printf("4.울산 ");
-  else if(a==5)printf("5.대전 ");
-  else if(a==6)printf("6.수원 ");
+  if(a==1)printf("1.Jeonju ");
+  else if(a==2)printf("2.Seoul ");
+  else if(a==3)printf("3.Busan ");
+  else if(a==4)printf("4.Ulsan ");
+  else if(a==5)printf("5.Daejeon ");
+  else if(a==6)printf("6.Suwon ");
 }
 void printarea2(int a){
-  if(a==1)printf("전주 ");
-  else if(a==2)printf("서울 ");
-  else if(a==3)printf("부산 ");
-  else if(a==4)printf("울산 ");
-  else if(a==5)printf("대전 ");
-  else if(a==6)printf("수원 ");
+  if(a==1)printf("Jeonju ");
+  else if(a==2)printf("Seoul ");
+  else if(a==3)printf("Busan ");
+  else if(a==4)printf("Ulsan ");
+  else if(a==5)printf("Daejeon ");
+  else if(a==6)printf("Suwon ");
 }
 void printtrans(int a){
-  if(a==1)printf("1. 기차 ");
-  else if(a==2)printf("2. 버스 ");
-  else if(a==3)printf("3. 비행기 ");
+  if(a==1)printf("1. Train ");
+  else if(a==2)printf("2. Bus ");
+  else if(a==3)printf("3. Airplane ");
 }
 void printtrans2(int a){
-  if(a==1)printf("기차 ");
-  else if(a==2)printf("버스 ");
-  else if(a==3)printf("비행기 ");
+  if(a==1)printf("Train ");
+  else if(a==2)printf("Bus ");
+  else if(a==3)printf("Airplane ");
 }
 
 int choosedest(struct list* l[],int list_count,int* start, struct plan* p[],int pcount){
@@ -141,7 +141,7 @@ int choosedest(struct list* l[],int list_count,int* start, struct plan* p[],int 
   p[pcount] = (struct plan*)malloc(sizeof(struct plan));
 
   while(1){
-    printf("다음 여행장소를 선택해 주세요\n");
+    printf("Please select the next travel place\n");
     for(int i=0; i<list_count;i++){
       if(l[i]->area1==*start){
         flag[(l[i]->area2)-1]=1;
@@ -156,14 +156,14 @@ int choosedest(struct list* l[],int list_count,int* start, struct plan* p[],int 
       printarea(i+1);      
     }
     printf("\n");
-    printf("여행장소 번호: ");
+    printf("Travel place number: ");
     scanf("%d",&dest);
     printf("\n");
     if(dest>=1&&dest<=6&&flag[dest-1]==1)break;
   }
   p[pcount]->dest=dest;
   while(1){
-    printf("교통수단을 선택해 주세요\n");
+    printf("Please select the means of transportation\n");
     for(int i=0; i<list_count;i++){
       if(l[i]->area1==*start&&l[i]->area2==dest){
         flag2[l[i]->tran -1]=1;
@@ -176,7 +176,7 @@ int choosedest(struct list* l[],int list_count,int* start, struct plan* p[],int 
       if(flag2[i]==1)
         printtrans(i+1);
     }
-    printf("\n이동방법 번호: ");
+    printf("\nTransportation number: ");
     scanf("%d",&method);
     printf("\n");
     if(method>=1&&method<=3&&flag2[method-1]==1)break;
@@ -184,16 +184,16 @@ int choosedest(struct list* l[],int list_count,int* start, struct plan* p[],int 
   p[pcount]->tran=method;
   
   while(1){
-    printf("이용하실 곳을 선택해주세요\n");
+    printf("Please select the model you want to use\n");
     for(int i=0; i<list_count;i++){
       if(l[i]->area1==*start&&l[i]->area2==dest&&l[i]->tran==method){
-        printf("%d. %s 금액: %d원 소요시간: %d분\n",i+1,l[i]->sp,l[i]->price,l[i]->minute);
+        printf("%d. %s price: %dWon spending time: %dminutes\n",i+1,l[i]->sp,l[i]->price,l[i]->minute);
       }
       else if(l[i]->area2==*start&&l[i]->area1==dest&&l[i]->tran==method){
-        printf("%d. %s 금액: %d원 소요시간: %d분\n",i+1,l[i]->sp,l[i]->price,l[i]->minute);
+        printf("%d. %s price: %dWon spending time: %dminutes\n",i+1,l[i]->sp,l[i]->price,l[i]->minute);
       }
     }
-    printf("\n이용할 곳에 번호: ");
+    printf("\nModel number: ");
     scanf("%d",&sp);
     sp--;
     printf("\n");
@@ -210,19 +210,19 @@ int choosedest(struct list* l[],int list_count,int* start, struct plan* p[],int 
 }
 
 void printresult(int start,struct plan* p[],int pcount, struct spe* s[],int cost){
-  printf("\n여행 이동계획 총요약\n");
-  printf("출발 지점: ");
+  printf("\nTotal summary of travel planning plans\n");
+  printf("Departure: ");
   printarea2(start);
   printf("\n");
   for(int i=0; i<pcount; i++){
-    printf("%d번째 여행지: ",i+1);
+    printf("%dst destination: ",i+1);
     printarea2(p[i]->dest);
     printf("\n");
-    printf("이동방법: ");
+    printf("Transportation: ");
     printtrans2(p[i]->tran);
     printf("(%s)\n",p[i]->sp);
-    printf("금액: %d원 소요시간: %d분\n",p[i]->price,p[i]->minute);
-    printf("관광명소: %s %s %s\n",s[p[i]->dest-1]->spe[0],s[p[i]->dest-1]->spe[1],s[p[i]->dest-1]->spe[2]);
+    printf("cost: %dWon spending time: %dminutes\n",p[i]->price,p[i]->minute);
+    printf("Tourist attractions: %s %s %s\n",s[p[i]->dest-1]->spe[0],s[p[i]->dest-1]->spe[1],s[p[i]->dest-1]->spe[2]);
   }
   int price=0;
   int min=0;
@@ -230,37 +230,37 @@ void printresult(int start,struct plan* p[],int pcount, struct spe* s[],int cost
     price+=p[i]->price;
     min+=p[i]->minute;
   }
-  printf("교통예산: %d",price+cost);
-  printf("\n총 교통비: %d원\n총 이동시간: %d분\n남은 교통비: %d원",price,min,cost);
+  printf("Traffic budget: %d",price+cost);
+  printf("\nTotal transportation cost: %dWon\nTotal moving time: %dminutes\nRemaining budget: %dWon",price,min,cost);
 
   FILE*file=fopen("travel.txt","w");
-  fprintf(file,"여행 이동계획 총요약\n출발 지점: ");
+  fprintf(file,"Total summary of travel planning plans\nDeparture: ");
   int a= start;
-  if(a==1)fprintf(file,"전주\n\n");
-  else if(a==2)fprintf(file,"서울\n\n");
-  else if(a==3)fprintf(file,"부산\n\n");
-  else if(a==4)fprintf(file,"울산\n\n");
-  else if(a==5)fprintf(file,"대전\n\n");
-  else if(a==6)fprintf(file,"수원\n\n");
+  if(a==1)fprintf(file,"Jeonju\n\n");
+  else if(a==2)fprintf(file,"Seoul\n\n");
+  else if(a==3)fprintf(file,"Busan\n\n");
+  else if(a==4)fprintf(file,"Ulsan\n\n");
+  else if(a==5)fprintf(file,"Daejeon\n\n");
+  else if(a==6)fprintf(file,"Suwon\n\n");
 
   for(int i=0; i<pcount; i++){
-    fprintf(file,"%d번째 여행지: ",i+1);
+    fprintf(file,"%dst destination: ",i+1);
     a=p[i]->dest;
-    if(a==1)fprintf(file,"전주 ");
-    else if(a==2)fprintf(file,"서울 ");
-    else if(a==3)fprintf(file,"부산 ");
-    else if(a==4)fprintf(file,"울산 ");
-    else if(a==5)fprintf(file,"대전 ");
-    else if(a==6)fprintf(file,"수원 ");
-    fprintf(file,"\n이동방법: ");
-    if(p[i]->tran==1)fprintf(file,"기차 ");
-    else if(p[i]->tran==2)fprintf(file,"버스 ");
-    else if(p[i]->tran==3)fprintf(file,"비행기 ");
+    if(a==1)fprintf(file,"Jeonju ");
+    else if(a==2)fprintf(file,"Seoul ");
+    else if(a==3)fprintf(file,"Busan ");
+    else if(a==4)fprintf(file,"Ulsan ");
+    else if(a==5)fprintf(file,"Daejeon ");
+    else if(a==6)fprintf(file,"Suwon ");
+    fprintf(file,"\nTransportation: ");
+    if(p[i]->tran==1)fprintf(file,"Train ");
+    else if(p[i]->tran==2)fprintf(file,"Bus ");
+    else if(p[i]->tran==3)fprintf(file,"Airplane ");
     fprintf(file,"(%s)\n",p[i]->sp);
-    fprintf(file, "금액: %d원 소요시간: %d분\n",p[i]->price,p[i]->minute);
-    fprintf(file,"관광명소: %s %s %s\n\n",s[p[i]->dest-1]->spe[0],s[p[i]->dest-1]->spe[1],s[p[i]->dest-1]->spe[2]);
+    fprintf(file, "cost: %dWon spending time: %dminutes\n",p[i]->price,p[i]->minute);
+    fprintf(file,"Tourist attractions: %s %s %s\n\n",s[p[i]->dest-1]->spe[0],s[p[i]->dest-1]->spe[1],s[p[i]->dest-1]->spe[2]);
   }
-  fprintf(file,"교통예산: %d",price+cost);
-  fprintf(file,"\n총 교통비: %d원\n총 이동시간: %d분\n남은 교통비: %d원",price,min,cost);
+  fprintf(file,"Traffic budget: %d",price+cost);
+  fprintf(file,"\nTotal transportation cost: %dWon\nTotal moving time: %dminutes\nRemaining budget: %dWon",price,min,cost);
   fclose(file);
 }
