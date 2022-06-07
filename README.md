@@ -46,3 +46,10 @@ ex) $ ./main.o
 
 ![image](https://user-images.githubusercontent.com/103616973/172417755-74835d73-2f27-424a-a41c-1c92fc69613d.png)
 
+## Where can I get more help, if I need it?
+
+If you have any questions or would like more information, please contact at 22000323@handong.ac.kr.
+
+## My contribution
+
+I wrote the full codes.
