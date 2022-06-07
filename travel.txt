@@ -1,0 +1,12 @@
+Total summary of travel planning plans
+Departure: Jeonju
+
+1st destination: Seoul 
+Transportation: Train (ktx)
+cost: 40000Won spending time: 99minutes
+Tourist attractions: 경복궁 롯데월드 N서울타워
+
+Traffic budget: 100000
+Total transportation cost: 40000Won
+Total moving time: 99minutes
+Remaining budget: 60000Won
