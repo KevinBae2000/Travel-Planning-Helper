@@ -11,16 +11,17 @@ The user first enters the traffic budget and selects the current location. The p
 If you move without planning when you travel in Korea, traffic expenses often exceed traffic budgets, and sometimes you take too much traffic time. The program prevents that situation, and show time and money to spend on total transportation, and informs tourist attractions in the travel area. Finally, you can receive your total plan as a text file.
 
 ## How do I get started?
-There are 5 files(main.c, main.o, list.txt, place.txt, travel.txt) in total.
+There are 4 files(main.c, list.txt, place.txt, travel.txt) in total.
 > main.c: C code file
-> 
-> main.o: Execution file
 > 
 > list.txt: Text files for transportation, use weight value (First, Second numbers are 1. Jeonju 2. Seoul 3. Busan 4. Ulsan 5. Daejeon 6. Suwon. Third number is 1. Train 2. Bus 3. Airplane)
 > 
 > place.txt: Text files for tourist attractions, use weight value (First numbers is 1. Jeonju 2. Seoul 3. Busan 4. Ulsan 5. Daejeon 6. Suwon)
 > 
 > travel.txt: Text files for result
+
+0. Complile main.c file
+ex) $ g++ main.c -o main.o
 
 1. Run main.o file.
 ex) $ ./main.o
