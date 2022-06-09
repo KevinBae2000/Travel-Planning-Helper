@@ -20,7 +20,7 @@ There are 4 files(main.c, list.txt, place.txt, travel.txt) in total.
 > 
 > travel.txt: Text files for result
 
-0. Complile main.c file
+0. Complile main.c file.
 ex) $ g++ main.c -o main.o
 
 1. Run main.o file.
